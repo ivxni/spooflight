@@ -1,0 +1,3 @@
+C:/Users/angel/Desktop/spooflight/build/CMakeFiles/Spooflight.dir
+C:/Users/angel/Desktop/spooflight/build/CMakeFiles/edit_cache.dir
+C:/Users/angel/Desktop/spooflight/build/CMakeFiles/rebuild_cache.dir
