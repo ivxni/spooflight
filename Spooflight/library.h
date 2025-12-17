@@ -1,0 +1,6 @@
+#ifndef SPOOFLIGHT_LIBRARY_H
+#define SPOOFLIGHT_LIBRARY_H
+
+void hello();
+
+#endif // SPOOFLIGHT_LIBRARY_H
