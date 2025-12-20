@@ -4,5 +4,17 @@
   "command": "C:\\PROGRA~2\\MICROS~2\\18\\BUILDT~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DSPOOFLIGHT_EXPORTS -DSpooflight_EXPORTS -IC:\\Users\\angel\\Desktop\\spooflight\\Core\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\Spooflight.dir\\src\\spoofer.cpp.obj /FdCMakeFiles\\Spooflight.dir\\ /FS -c C:\\Users\\angel\\Desktop\\spooflight\\Core\\src\\spoofer.cpp",
   "file": "C:/Users/angel/Desktop/spooflight/Core/src/spoofer.cpp",
   "output": "C:/Users/angel/Desktop/spooflight/build/CMakeFiles/Spooflight.dir/src/spoofer.cpp.obj"
+},
+{
+  "directory": "C:/Users/angel/Desktop/spooflight/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\18\\BUILDT~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DSPOOFLIGHT_EXPORTS -IC:\\Users\\angel\\Desktop\\spooflight\\Core\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\SpooflightTest.dir\\src\\test_main.cpp.obj /FdCMakeFiles\\SpooflightTest.dir\\ /FS -c C:\\Users\\angel\\Desktop\\spooflight\\Core\\src\\test_main.cpp",
+  "file": "C:/Users/angel/Desktop/spooflight/Core/src/test_main.cpp",
+  "output": "C:/Users/angel/Desktop/spooflight/build/CMakeFiles/SpooflightTest.dir/src/test_main.cpp.obj"
+},
+{
+  "directory": "C:/Users/angel/Desktop/spooflight/build",
+  "command": "C:\\PROGRA~2\\MICROS~2\\18\\BUILDT~1\\VC\\Tools\\MSVC\\1450~1.357\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DSPOOFLIGHT_EXPORTS -IC:\\Users\\angel\\Desktop\\spooflight\\Core\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd /FoCMakeFiles\\SpooflightTest.dir\\src\\spoofer.cpp.obj /FdCMakeFiles\\SpooflightTest.dir\\ /FS -c C:\\Users\\angel\\Desktop\\spooflight\\Core\\src\\spoofer.cpp",
+  "file": "C:/Users/angel/Desktop/spooflight/Core/src/spoofer.cpp",
+  "output": "C:/Users/angel/Desktop/spooflight/build/CMakeFiles/SpooflightTest.dir/src/spoofer.cpp.obj"
 }
 ]

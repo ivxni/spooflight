@@ -1,0 +1,450 @@
+<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SPOOFLIGHT" 
+        Height="680" Width="920"
+        MinHeight="500" MinWidth="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#08080c"
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="SingleBorderWindow">
+    
+    <Window.Resources>
+        <!-- 2025 Modern Color Palette -->
+        <Color x:Key="AccentColor">#6366f1</Color>
+        <Color x:Key="AccentLightColor">#818cf8</Color>
+        <Color x:Key="BackgroundColor">#08080c</Color>
+        <Color x:Key="SurfaceColor">#0f0f14</Color>
+        <Color x:Key="CardColor">#13131a</Color>
+        <Color x:Key="BorderColor">#1e1e28</Color>
+        <Color x:Key="TextColor">#f0f0f5</Color>
+        <Color x:Key="TextMutedColor">#71717a</Color>
+        <Color x:Key="SuccessColor">#22c55e</Color>
+        <Color x:Key="ErrorColor">#ef4444</Color>
+        <Color x:Key="WarningColor">#eab308</Color>
+        
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="AccentLightBrush" Color="{StaticResource AccentLightColor}"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+        <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+        <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
+        <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource TextMutedColor}"/>
+        
+        <!-- Compact Primary Button -->
+        <Style x:Key="BtnPrimary" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AccentLightBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#252530"/>
+                                <Setter Property="Foreground" Value="#555"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Compact Ghost Button -->
+        <Style x:Key="BtnGhost" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1a1a24"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Sidebar Tab Button -->
+        <Style x:Key="TabBtn" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#16161e"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#1c1c28"/>
+                                <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Compact TextBox -->
+        <Style x:Key="InputBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#0c0c10"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontFamily" Value="JetBrains Mono, Consolas"/>
+            <Setter Property="CaretBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Compact ComboBox -->
+        <Style x:Key="InputCombo" TargetType="ComboBox">
+            <Setter Property="Background" Value="#0c0c10"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+        
+        <!-- Info Card -->
+        <Style x:Key="InfoCard" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="12,10"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Logo -->
+                <StackPanel Grid.Row="0" Margin="16,16,16,20">
+                    <TextBlock Text="SPOOFLIGHT" FontSize="15" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                        <Ellipse Width="6" Height="6" x:Name="StatusDot" Fill="#ef4444"/>
+                        <TextBlock x:Name="StatusText" Text="Offline" FontSize="9" Foreground="{StaticResource TextMutedBrush}" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="VersionText" Text="v1.0" FontSize="9" Foreground="#404050" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <!-- Navigation -->
+                <StackPanel Grid.Row="1" Margin="8,0">
+                    <TextBlock Text="SPOOFERS" FontSize="9" Foreground="#404050" Margin="12,0,0,8" FontWeight="SemiBold"/>
+                    <RadioButton x:Name="TabGuid" Content="🔑 Machine GUID" Style="{StaticResource TabBtn}" IsChecked="True" Checked="OnTabChanged"/>
+                    <RadioButton x:Name="TabMac" Content="🌐 MAC Address" Style="{StaticResource TabBtn}" Checked="OnTabChanged"/>
+                    <RadioButton x:Name="TabHwid" Content="💻 Hardware IDs" Style="{StaticResource TabBtn}" Checked="OnTabChanged"/>
+                    
+                    <TextBlock Text="ANALYSIS" FontSize="9" Foreground="#404050" Margin="12,16,0,8" FontWeight="SemiBold"/>
+                    <RadioButton x:Name="TabAnalysis" Content="🔬 System Scan" Style="{StaticResource TabBtn}" Checked="OnTabChanged"/>
+                    
+                    <TextBlock Text="ADVANCED" FontSize="9" Foreground="#404050" Margin="12,16,0,8" FontWeight="SemiBold"/>
+                    <RadioButton x:Name="TabKernel" Content="⚡ Kernel Driver" Style="{StaticResource TabBtn}" Checked="OnTabChanged" IsEnabled="False"/>
+                </StackPanel>
+                
+                <!-- Footer -->
+                <Border Grid.Row="2" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0" Padding="12,10">
+                    <TextBlock Text="Security Research Only" FontSize="8" Foreground="#303040" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Content Pages -->
+            <Grid Grid.Row="0" Margin="20,16,20,12">
+                
+                <!-- Machine GUID Page -->
+                <StackPanel x:Name="PageGuid" Visibility="Visible">
+                    <TextBlock Text="Machine GUID" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                    <TextBlock Text="Windows Registry identifier" FontSize="10" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,16"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Current -->
+                        <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Text="CURRENT" FontSize="9" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="CurrentGuidText" Text="Click Read to load" FontFamily="JetBrains Mono, Consolas" FontSize="10" Foreground="{StaticResource TextMutedBrush}" TextTrimming="CharacterEllipsis"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <!-- New -->
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                            <TextBlock Text="NEW VALUE" FontSize="9" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <TextBox x:Name="NewGuidInput" Style="{StaticResource InputBox}"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="Read" Style="{StaticResource BtnGhost}" Click="OnReadGuidClick" Margin="0,0,6,0"/>
+                        <Button Content="Generate" Style="{StaticResource BtnGhost}" Click="OnGenerateGuidClick" Margin="0,0,6,0"/>
+                        <Button x:Name="SpoofGuidButton" Content="⚡ Spoof" Style="{StaticResource BtnPrimary}" Click="OnSpoofGuidClick" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <!-- MAC Address Page -->
+                <StackPanel x:Name="PageMac" Visibility="Collapsed">
+                    <TextBlock Text="MAC Address" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                    <TextBlock Text="Network adapter spoofing" FontSize="10" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,16"/>
+                    
+                    <TextBlock Text="ADAPTER" FontSize="9" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <ComboBox x:Name="AdapterComboBox" Style="{StaticResource InputCombo}" SelectionChanged="OnAdapterSelectionChanged"/>
+                    
+                    <Grid Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Text="CURRENT MAC" FontSize="9" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="CurrentMacText" Text="Select adapter" FontFamily="JetBrains Mono, Consolas" FontSize="10" Foreground="{StaticResource TextMutedBrush}"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                            <TextBlock Text="NEW MAC" FontSize="9" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <TextBox x:Name="NewMacInput" Style="{StaticResource InputBox}"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="Refresh" Style="{StaticResource BtnGhost}" Click="OnRefreshAdaptersClick" Margin="0,0,6,0"/>
+                        <Button Content="Generate" Style="{StaticResource BtnGhost}" Click="OnGenerateMacClick" Margin="0,0,6,0"/>
+                        <Button x:Name="SpoofMacButton" Content="⚡ Spoof" Style="{StaticResource BtnPrimary}" Click="OnSpoofMacClick" IsEnabled="False"/>
+                    </StackPanel>
+                    
+                    <Border Background="#18140c" CornerRadius="4" Padding="10,8" Margin="0,16,0,0">
+                        <TextBlock Text="⚠ Restart adapter after spoofing" FontSize="9" Foreground="#b4a030"/>
+                    </Border>
+                </StackPanel>
+                
+                <!-- Hardware IDs Page -->
+                <StackPanel x:Name="PageHwid" Visibility="Collapsed">
+                    <TextBlock Text="Hardware IDs" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                    <TextBlock Text="System identifiers" FontSize="10" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,12"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,6,8">
+                            <TextBlock Text="💿 DISK" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="DiskSerialText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextBrush}" TextTrimming="CharacterEllipsis"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="3,0,3,8">
+                            <TextBlock Text="📀 VOLUME" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="VolumeSerialText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextBrush}"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="0" Grid.Column="2" Margin="6,0,0,8">
+                            <TextBlock Text="🧠 CPU" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="CpuIdText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextBrush}" TextTrimming="CharacterEllipsis"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,3,8">
+                            <TextBlock Text="🔧 SMBIOS UUID" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="SmbiosUuidText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextBrush}" TextTrimming="CharacterEllipsis"/>
+                            </Border>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="3,0,0,8">
+                            <TextBlock Text="🪟 PRODUCT" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <Border Style="{StaticResource InfoCard}">
+                                <TextBlock x:Name="ProductIdText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextBrush}" TextTrimming="CharacterEllipsis"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <Button Content="🔄 Refresh All" Style="{StaticResource BtnGhost}" Click="OnRefreshHardwareClick" HorizontalAlignment="Left" Margin="0,4,0,12"/>
+                    
+                    <Border Background="{StaticResource BorderBrush}" Height="1" Margin="0,4,0,12"/>
+                    
+                    <TextBlock Text="SPOOF PRODUCT ID" FontSize="9" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="NewProductIdInput" Style="{StaticResource InputBox}" Grid.Column="0" Margin="0,0,8,0"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button Content="Gen" Style="{StaticResource BtnGhost}" Click="OnGenerateProductIdClick" Margin="0,0,6,0"/>
+                            <Button Content="⚡ Spoof" Style="{StaticResource BtnPrimary}" Click="OnSpoofProductIdClick"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                
+                <!-- System Analysis Page -->
+                <ScrollViewer x:Name="PageAnalysis" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="System Analysis" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="Deep hardware scan" FontSize="10" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,12"/>
+                        
+                        <Button Content="🔬 Run Full Analysis" Style="{StaticResource BtnPrimary}" Click="OnRunAnalysisClick" HorizontalAlignment="Left" Margin="0,0,0,16"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- TPM -->
+                            <StackPanel Grid.Column="0" Margin="0,0,6,8">
+                                <TextBlock Text="🔐 TPM STATUS" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                <Border Style="{StaticResource InfoCard}" MinHeight="60">
+                                    <TextBlock x:Name="TpmStatusText" Text="Run analysis..." FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+                                </Border>
+                            </StackPanel>
+                            
+                            <!-- VM -->
+                            <StackPanel Grid.Column="1" Margin="6,0,0,8">
+                                <TextBlock Text="🖥️ VM DETECTION" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                <Border x:Name="VmDetectionBorder" Style="{StaticResource InfoCard}" MinHeight="60">
+                                    <TextBlock x:Name="VmStatusText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- CPU -->
+                        <TextBlock Text="🧠 CPU DETAILS" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,4,0,4"/>
+                        <Border Style="{StaticResource InfoCard}" Margin="0,0,0,8">
+                            <TextBlock x:Name="CpuInfoText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+                        </Border>
+                        
+                        <!-- Disks -->
+                        <TextBlock Text="💾 DISK DETAILS" FontSize="8" Foreground="#505060" FontWeight="SemiBold" Margin="0,4,0,4"/>
+                        <Border Style="{StaticResource InfoCard}" Margin="0,0,0,8">
+                            <TextBlock x:Name="DiskDetailsText" Text="—" FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+                        </Border>
+                        
+                        <!-- Recommendations -->
+                        <TextBlock Text="📋 RECOMMENDATIONS" FontSize="8" Foreground="{StaticResource AccentBrush}" FontWeight="SemiBold" Margin="0,4,0,4"/>
+                        <Border Background="#12121f" BorderBrush="#1e1e30" BorderThickness="1" CornerRadius="6" Padding="12,10">
+                            <TextBlock x:Name="RecommendationsText" Text="Run analysis for recommendations..." FontFamily="JetBrains Mono, Consolas" FontSize="8" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+                
+                <!-- Kernel Driver Page (Coming Soon) -->
+                <StackPanel x:Name="PageKernel" Visibility="Collapsed">
+                    <TextBlock Text="Kernel Driver" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}"/>
+                    <TextBlock Text="Deep system spoofing" FontSize="10" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,16"/>
+                    
+                    <Border Background="#14141f" CornerRadius="6" Padding="20" Margin="0,20,0,0">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🚧" FontSize="32" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Coming Soon" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}" HorizontalAlignment="Center" Margin="0,12,0,4"/>
+                            <TextBlock Text="Kernel-level spoofing for NVMe, SMBIOS, CPU ID" FontSize="10" Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                
+            </Grid>
+            
+            <!-- Log Panel -->
+            <Border Grid.Row="1" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0" Padding="16,10" MaxHeight="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="LOG" FontSize="8" Foreground="#404050" FontWeight="SemiBold" VerticalAlignment="Top" Margin="0,2,12,0"/>
+                    <ScrollViewer Grid.Column="1" MaxHeight="70" VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="LogText" Text="Ready." FontFamily="JetBrains Mono, Consolas" FontSize="9" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"/>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

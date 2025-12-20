@@ -1,0 +1,67 @@
+;
+; SpooflightDriver.inf
+;
+; 📚 LEKTION: INF Dateien
+;
+; INF = Information File
+; Beschreibt wie Windows den Driver installieren soll.
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider    = %ManufacturerName%
+CatalogFile = SpooflightDriver.cat
+DriverVer   = 12/19/2025,1.0.0.0
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+SpooflightDriver.sys = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%DeviceDesc% = SpooflightDriver_Device, Root\SpooflightDriver
+
+[SpooflightDriver_Device.NT]
+CopyFiles = SpooflightDriver.CopyFiles
+
+[SpooflightDriver.CopyFiles]
+SpooflightDriver.sys
+
+;*****************************************
+; Service Section
+;*****************************************
+
+[SpooflightDriver_Device.NT.Services]
+AddService = SpooflightDriver,%SPSVCINST_ASSOCSERVICE%,SpooflightDriver_Service_Inst
+
+[SpooflightDriver_Service_Inst]
+DisplayName    = %ServiceDesc%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\SpooflightDriver.sys
+
+;*****************************************
+; Strings Section
+;*****************************************
+
+[Strings]
+SPSVCINST_ASSOCSERVICE = 0x00000002
+ManufacturerName       = "Spooflight"
+DiskName               = "Spooflight Driver Installation Disk"
+DeviceDesc             = "Spooflight Kernel Driver"
+ServiceDesc            = "Spooflight Hardware ID Spoofer"

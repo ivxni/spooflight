@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        
+        <!-- App-Name -->
+        <AssemblyName>Spooflight</AssemblyName>
+        <RootNamespace>UI</RootNamespace>
+    </PropertyGroup>
+
+    <!-- 
+    ═══════════════════════════════════════════════════════════════════════════
+    📚 LEKTION: Dateien ins Output kopieren
+    
+    Wir müssen unsere C++ DLL ins Build-Verzeichnis kopieren,
+    damit die App sie zur Laufzeit finden kann.
+    
+    "CopyToOutputDirectory" macht genau das!
+    ═══════════════════════════════════════════════════════════════════════════
+    -->
+    <ItemGroup>
+        <None Include="..\Core\cmake-build-debug-visual-studio\SpooflightCore.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>SpooflightCore.dll</Link>
+        </None>
+    </ItemGroup>
+
+</Project>

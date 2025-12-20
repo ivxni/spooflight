@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "Spooflight",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Spooflight::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Spooflight-Debug-bb7b149a72fb4ff70a73.json",
+					"jsonFile" : "target-Spooflight-Debug-6bc3d1d6ab354ec32b2c.json",
 					"name" : "Spooflight",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SpooflightTest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SpooflightTest-Debug-c62ad979d30997d7bc17.json",
+					"name" : "SpooflightTest",
 					"projectIndex" : 0
 				}
 			]

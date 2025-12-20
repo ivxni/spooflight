@@ -60,7 +60,7 @@ add_library(Spooflight SHARED ${SOURCES} ${HEADERS})
 # ═══════════════════════════════════════════════════════════════════════════
 target_link_libraries(Spooflight
     advapi32      # Registry API
-    # iphlpapi    # Network API (Phase 3)
+    iphlpapi      # Network API (Phase 3) ✅ Aktiviert!
     # setupapi    # Device API (Phase 4)
     # wbemuuid    # WMI API (Phase 4)
 )
@@ -69,4 +69,21 @@ target_link_libraries(Spooflight
 set_target_properties(Spooflight PROPERTIES
     OUTPUT_NAME "SpooflightCore"
     PREFIX ""
+)
+
+# ═══════════════════════════════════════════════════════════════════════════
+# TEST EXECUTABLE
+# Ein kleines Programm zum Testen unserer DLL-Funktionen
+# ═══════════════════════════════════════════════════════════════════════════
+add_executable(SpooflightTest
+    src/test_main.cpp
+    src/spoofer.cpp      # Direkt einbinden (einfacher als DLL laden)
+)
+
+# WICHTIG: SPOOFLIGHT_EXPORTS definieren damit die Funktionen richtig kompiliert werden
+target_compile_definitions(SpooflightTest PRIVATE SPOOFLIGHT_EXPORTS)
+
+target_link_libraries(SpooflightTest
+    advapi32
+    iphlpapi      # Für MAC Spoofing
 )
